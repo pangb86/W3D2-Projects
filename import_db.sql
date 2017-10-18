@@ -10,17 +10,6 @@ CREATE TABLE users (
   lname VARCHAR(255) NOT NULL
 );
 
-SELECT
-    *
-      FROM
-        question_likes
-      LEFT OUTER JOIN
-        questions
-      ON
-        questions.id = question_likes.question_id
-      WHERE
-        questions.author_id = 2
-
 
 INSERT INTO
   users (fname, lname)
