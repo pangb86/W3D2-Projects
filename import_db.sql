@@ -10,6 +10,18 @@ CREATE TABLE users (
   lname VARCHAR(255) NOT NULL
 );
 
+SELECT
+    *
+      FROM
+        question_likes
+      LEFT OUTER JOIN
+        questions
+      ON
+        questions.id = question_likes.question_id
+      WHERE
+        questions.author_id = 2
+
+
 INSERT INTO
   users (fname, lname)
 VALUES
@@ -39,6 +51,15 @@ INSERT INTO
   questions (title, body, author_id)
 SELECT
   'Ma Question Today''s date?', 'I can''t read a calendar', users.id
+FROM
+  users
+WHERE
+  users.fname = "Cynthia" AND users.lname = "Ma";
+
+INSERT INTO
+  questions (title, body, author_id)
+SELECT
+  'Ma Quest', 'I can', users.id
 FROM
   users
 WHERE
@@ -110,5 +131,12 @@ VALUES
   (SELECT id FROM questions WHERE title = 'Bo SQL Question')),
 
   ((SELECT id FROM users WHERE users.fname = 'Bo'),
-  (SELECT id FROM questions WHERE title = 'Ma Question Today''s date?')
+  (SELECT id FROM questions WHERE title = 'Ma Question Today''s date?')),
+
+  ((SELECT id FROM users WHERE users.fname = 'Andres'),
+  (SELECT id FROM questions WHERE title = 'Ma Question Today''s date?')),
+
+  ((SELECT id FROM users WHERE users.fname = 'Andres'),
+  (SELECT id FROM questions WHERE title = 'Ma Quest')
+
 );
